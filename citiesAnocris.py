@@ -13,4 +13,4 @@ class citiesAnocris():
         return self.geteverything["user"]["cityList"]
     
     def get(self, name: str) -> int:
-        return self.city[name]
+        return self.city[name]lllllll
