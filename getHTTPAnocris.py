@@ -12,30 +12,25 @@ class getHTTPAnocris():
     #https://int43.anocris.com/rest/switchcity/3837 
     #https://int43.anocris.com/rest/geteverything
     # api-endpoint
-        self.request = {"geteverything" : "geteverything"}
-        self.headers = None
-    
-    def getCity(self, referer : str):
+        self.request = {"geteverything" : "rest/geteverything", "switchcity" : "/rest/switchcity/"}
+        self.headers = headersAnocris()
+        self.URL = "https://int43.anocris.com/" #rest/geteverything"
+        self.data = None
         
-        headers = headersAnocris()
-        
-        self.headers = headers.get(referer)
-        
-        URL = "https://int43.anocris.com/rest/geteverything"
-        
-        # location given here
+    def get(self, reqst : str) -> list:
+                
+        self.headers = self.headers.get( self.request[reqst])
+              
+        # time unix format
         t = int( time.time())
         
-        # defining a params dict for the parameters to be sent to the API
+        # defining a params
         PARAMS = {'_':t}
         
         # sending get request and saving the response as response object
-        r = requests.get(url = URL, params = PARAMS, headers = self.headers)
-
-        #for rest in r:
-        #    print( rest)
+        r = requests.get(url = self.URL + self.request[reqst], params = PARAMS, headers = self.headers)
         
         # extracting data in json format
-        data = r.json()
+        self.data = r.json()
         
-        return data
+        return self.data

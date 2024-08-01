@@ -31,7 +31,7 @@ class headersAnocris():
             "Origin": "https://" + self.host}
         
     def get(self, referer : str) -> dict:
-        self.getHEADERS["Referer"] += self.referer[referer] # pro každý požadavek jiné směrování
+        self.getHEADERS["Referer"] += referer # pro každý požadavek jiné směrování
         return self.getHEADERS
     
     def post(self, referer : str, content_length : str) -> dict:

@@ -1,9 +1,16 @@
-import getHTTPAnocris
+from getHTTPAnocris import *
 
-class citiesAnocris:
-    
+class citiesAnocris():
+      
     def __init__(self) -> None:
-                self.city = { "Litvínov": 3837, "Most": 5490, "Ossegg": 5552}
+        self.cities = None
+        self.getHTTP = getHTTPAnocris()
+        self.cities = None
+        self.geteverything = None
         
+    def getList(self, reqst: str) -> int:
+        self.geteverything = self.getHTTP.get(reqst)
+        return self.geteverything["user"]["cityList"]
+    
     def get(self, name: str) -> int:
         return self.city[name]
